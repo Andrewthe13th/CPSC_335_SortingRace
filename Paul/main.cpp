@@ -23,8 +23,8 @@ int main(int argc, char *argv[]){
 	}
 	cout << endl;
 
-    while(//both algos have not finished/){
-        race.step();
-        }
-    race.winner();
+//    while(//both algos have not finished/)
+//        race.step();
+//        }
+//    race.winner();
 }

@@ -1,5 +1,4 @@
 #include "raceMgr.h"
-//#include "bubble"
 //#include "merge"
 #include <iostream>
 
@@ -8,12 +7,13 @@ using namespace std;
 racemgr::racemgr(int *arr, int n)
 {
 	bubbleAlgo = bubble(arr, n);
-	mergeAlgo  = merge(arr, n);
+	//mergeAlgo  = merge(arr, n);
 }
 
 racemgr::racemgr() {
 
 }
+
 
 void racemgr::step()
 {
@@ -22,19 +22,19 @@ void racemgr::step()
 	//2: Finished
 
 	int bubbleState = bubbleAlgo.getState();
-	int mergeState  = mergeAlgo.getState();
+	//int mergeState  = mergeAlgo.getState();
 
 	if (bubbleState != 2){
 		bubbleAlgo.step();
-		bubbleCount++
+        bubbleCount++;
 		bubbleState = bubbleAlgo.getState();
 	}
 	
-	if (mergeState != 2){
-		mergeAlgo.step();
-		mergeCount++
-		mergeState = mergeAlgo.getState();
-	}
+//    if (mergeState != 2){
+//        mergeAlgo.step();
+//        mergeCount++
+//        mergeState = mergeAlgo.getState();
+//    }
 
 	if (bubbleState == 1){
 		int * bubblePt = bubbleAlgo.getPointer();
@@ -43,12 +43,12 @@ void racemgr::step()
 		cout << "]";
 	}
 
-	if (mergeState == 1){
-		int * mergePt = mergeAlgo.getPointer();
-		cout << "#" << mergeCount << "M: [";
-		printArray(mergePt, aSize);
-		cout << "]";
-	}
+//    if (mergeState == 1){
+//        int * mergePt = mergeAlgo.getPointer();
+//        cout << "#" << mergeCount << "M: [";
+//        printArray(mergePt, aSize);
+//        cout << "]";
+//    }
 }
 
 void racemgr::winner(){
@@ -61,7 +61,7 @@ void racemgr::winner(){
 	int * winPt = bubbleAlgo.getPointer();
 	printArray(winPt, aSize);
 
-	winPt = mergeAlgo.getpointer();
+//    winPt = mergeAlgo.getpointer();
 }
 
 void racemgr::printArray(int *a, int n)
