@@ -47,9 +47,21 @@ void RaceMgr::run()
 			}
 		}
 
-
-
 		count++;
+		printMoves();
+	}
+}
+
+void RaceMgr::printMoves()
+{
+    if (merge->getStatus() == Algorithm::AlgorithmStatus::Swapping){
+		cout << "#" << count << ", ";
+		merge->Algorithm::printList();
+	}
+
+	if (bubble->getStatus() == Algorithm::AlgorithmStatus::Swapping){
+		cout << "#" << count << ", ";
+		bubble->Algorithm::printList();
 	}
 }
 

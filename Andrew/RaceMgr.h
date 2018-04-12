@@ -9,8 +9,9 @@ public:
 	RaceMgr() {};
 	RaceMgr(std::vector<int> a);
 	void run();
+	void printMoves();
 	void printWinner();
-	void printSwap() {};\
+	void printSwap() {};
 private:
 	BubbleSort* bubble;
 	MergeSort* merge;

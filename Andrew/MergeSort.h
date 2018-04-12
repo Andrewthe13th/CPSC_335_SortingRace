@@ -2,7 +2,7 @@
 #define MERGESORT_H
 
 #include "Algorithms.h"
-#include "math.h"
+#include <math.h>
 
 class MergeSort : public Algorithm {
 public:

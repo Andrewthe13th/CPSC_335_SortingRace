@@ -1,35 +1,31 @@
 #include "RaceMgr.h"
+#include <sstream>
 #include <vector>
+#include <string>
 #include <math.h>
 
 int main(int argc, char *argv[])
 {
-	// Testing BubbleSort
-	vector<int> list = { 8,7,6,5,4,3,2,1 };
-
-	/*BubbleSort bubble(list);
-
-	while (bubble.getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
-	{
-		bubble.printList();
-		bubble.step();
+	string arr1;
+    for (int i = 1; i < argc; i++){
+        arr1 += argv[ i ];
+        arr1 += " ";
+    }
+	stringstream iss( arr1 );
+	int number;
+	vector<int> list;
+	while (iss >> number ){
+		list.push_back( number );
 	}
 
-	cout << "FINISHED SORTING" << endl;
-	bubble.printList();*/
-
-	MergeSort merge(list);
-
-	while (merge.getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
+	RaceMgr start (list);
+	cout << "[";
+	for (int i = 0; i < ( (static_cast<int>( list.size()))-1 ) ; i++)
 	{
-		//merge.printList();
-		merge.printTemp();
-		merge.step();
+		cout << list[i] << ", ";
 	}
-
-	cout << "FINISHED SORTING" << endl;
-	merge.printList();
-
-	//system("PAUSE");
+	cout << list.back() << "]" << endl;
+	start.run();
+	start.printWinner();
 	return 0;
 }
