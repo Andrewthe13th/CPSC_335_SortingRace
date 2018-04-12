@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef RACEMGR_H
 #define RACEMGR_H
 

@@ -2,7 +2,7 @@
 
 /* MergeSort Implementation */
 MergeSort::MergeSort(const vector<int>& a)
-{	
+{
 	// copy list
 	for (auto &x : a)
 		list.push_back(x);
@@ -33,11 +33,12 @@ void MergeSort::step()
 	if (currentComparision != maxComparisions)
 	{
 		cout << "Sublist Size & Count: " << sublistSize << ", " << subListCount << endl;
-		cout << "Left index & prefix: " << indexLeft << ", " << prefixLeft << " Right index & prefix: " << indexRight << ", " << prefixRight << endl << endl;
+		cout << "Left index & prefix: " << indexLeft << ", " << prefixLeft << " Right index & prefix: " << indexRight << ", " << prefixRight << endl;
 		Astatus = Algorithm::AlgorithmStatus::Unsorted;
 		// if right is less than left then swap
 		if (list[indexLeft + prefixLeft] > list[indexRight + prefixRight])
 		{
+			cout << list[indexLeft + prefixLeft] << " > " << list[indexRight + prefixRight] << endl << endl;
 			// store value in temp array
 			temp[indexLeft + prefixLeft + prefixRight] = list[indexRight + prefixRight];
 			prefixRight++;
@@ -96,6 +97,14 @@ void MergeSort::step()
 		else // even
 			maxComparisions = maxComparisions / 2;
 
+		// update list with Temp
+		int i = 0;
+		for(auto &x : list)
+		{
+			x = temp[i]; i++;
+		}
+
+
 		currentComparision = 0;
 		sublistSize = sublistSize * 2;
 		subListCount = subListCount / 2;
@@ -104,4 +113,13 @@ void MergeSort::step()
 		indexRight = ((2 * currentComparision)*sublistSize) + sublistSize;
 		step();
 	}
+}
+
+void MergeSort::printTemp()
+{
+	for (int i = 0; i < ( (static_cast<int>( temp.size()))-1 ) ; i++)
+	{
+		cout << temp[i] << ", ";
+	}
+	cout << temp.back() << "]" << endl;
 }

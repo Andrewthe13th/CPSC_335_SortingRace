@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
@@ -30,7 +28,7 @@ public:
 	void setRacePosition(RacePlace a) { racePosition = a; };
 	string ID;
 
-	
+
 
 protected:
 	RacePlace racePosition;

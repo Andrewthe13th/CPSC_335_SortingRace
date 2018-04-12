@@ -22,13 +22,14 @@ int main(int argc, char *argv[])
 
 	while (merge.getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 	{
-		merge.printList();
+		//merge.printList();
+		merge.printTemp();
 		merge.step();
 	}
 
 	cout << "FINISHED SORTING" << endl;
 	merge.printList();
 
-	system("PAUSE");
+	//system("PAUSE");
 	return 0;
 }
