@@ -1,19 +1,22 @@
+#pragma once
+#define SIZE 12
 class bubble
 {
-public:
-	int * perform();
-	void printState();
-	int step(int a , int b);
-    int *getArray() { return copy;}
-    int getState();
-    
-	bubble(int *b, int f);
-	bubble();
-	~bubble();
 
 protected:
+	int *workingarray; //copy
+	int size;
+	int prefix;
+	int suffix;
+public:
+	bubble();
+	int* getPointer() { return workingarray; }
+	int count;
+	bubble(int *arr, int size);
+	int step();
 	int state;
-	int *arr, prefix, suffix, size, s, *copy;
 
+
+	~bubble();
 };
 
