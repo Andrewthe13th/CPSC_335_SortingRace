@@ -19,12 +19,13 @@ int main(int argc, char *argv[])
 	}
 
 	RaceMgr start (list);
-	cout << "[";
+	cout << "Starting array is:[";
 	for (int i = 0; i < ( (static_cast<int>( list.size()))-1 ) ; i++)
 	{
 		cout << list[i] << ", ";
 	}
-	cout << list.back() << "]" << endl;
+	cout << list.back() << "]\n" << endl;
+
 	start.run();
 	start.printWinner();
 	return 0;

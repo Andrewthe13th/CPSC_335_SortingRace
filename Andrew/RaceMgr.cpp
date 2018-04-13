@@ -6,7 +6,7 @@ void RaceMgr::run()
 	while (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting && merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 	{
 		// run bubble sort if it hasn't finished running
-		if (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
+		if (bubble->getStatus() == Algorithm::AlgorithmStatus::FinishedSorting)
 		{
 			bubble->step();
 
@@ -25,7 +25,6 @@ void RaceMgr::run()
 				}
 			}
 		}
-		
 		// run merge sort if it hasn't finished running
 		if (merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 		{

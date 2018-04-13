@@ -20,4 +20,4 @@ Algorithms.o: Algorithms.h
 
 
 clean:
-	rm -rf *.o
+	rm -r *.o

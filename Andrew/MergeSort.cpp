@@ -29,7 +29,8 @@ MergeSort::MergeSort(const vector<int>& a)
 void MergeSort::step()
 {
 	// check if comparisons still exist for the sublist size
-	cout << " Current: " << currentComparision << " Max: " << maxComparisions << endl;
+	cout << "Current: " << currentComparision << " Max: " << maxComparisions << endl;
+	
 	if (currentComparision != maxComparisions)
 	{
 		cout << "Sublist Size & Count: " << sublistSize << ", " << subListCount << endl;
@@ -47,13 +48,15 @@ void MergeSort::step()
 		}
 		else // left is less than right
 		{
+			cout << list[indexLeft + prefixLeft] << " > " << list[indexRight + prefixRight];
 			temp[indexLeft + prefixLeft + prefixRight] = list[indexLeft + prefixLeft];
 			prefixLeft++;
 		}
 
 		// check if a sublist has been completely checked
 		if (prefixLeft == sublistSize || prefixRight == sublistSize)
-		{
+		{ 
+			
 			// check left
 			if (prefixLeft == sublistSize)
 			{
@@ -61,7 +64,7 @@ void MergeSort::step()
 				while (prefixRight != sublistSize)
 				{
 					temp[indexLeft + prefixLeft + prefixRight] = list[indexRight + prefixRight];
-					prefixRight;
+					prefixRight++;
 				}
 			} // check right
 			else if (prefixRight == sublistSize)
@@ -72,6 +75,7 @@ void MergeSort::step()
 					temp[indexLeft + prefixLeft + prefixRight] = list[indexLeft + prefixLeft];
 					prefixLeft++;
 				}
+				
 			}
 			// Move to next comparison on the same level
 			currentComparision++;
@@ -88,6 +92,7 @@ void MergeSort::step()
 					cout << x << " ";
 				cout << endl;
 			}
+			
 		}
 	}
 	else // no more comparisons, move on to the next level
