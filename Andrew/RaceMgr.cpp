@@ -56,9 +56,10 @@ void RaceMgr::run()
 					loserCount = count;
 				}
 			}
+
+		}
 			count++;
 			printMoves();
-		}
 	}
 }
 
