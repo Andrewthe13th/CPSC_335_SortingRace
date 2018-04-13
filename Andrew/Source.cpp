@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[])
 {
+	if (argc >= 3){
 	string arr1;
     for (int i = 1; i < argc; i++){
         arr1 += argv[ i ];
@@ -28,5 +29,9 @@ int main(int argc, char *argv[])
 
 	start.run();
 	start.printWinner();
+	}
+	else{
+		cout << "Must enter at least 2 numbers" << endl;
+	}
 	return 0;
 }
