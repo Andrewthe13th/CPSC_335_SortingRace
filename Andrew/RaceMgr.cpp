@@ -3,10 +3,18 @@
 void RaceMgr::run()
 {
 	// keep running if a sorting method still hasn't finished
-	while (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting && merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
+	/*
+		There is a problem with this while loop
+		removed 
+		 && (merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting
+
+
+		 basically hard coded to let bubble finish
+	*/
+	while (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 	{
 		// run bubble sort if it hasn't finished running
-		if (bubble->getStatus() == Algorithm::AlgorithmStatus::FinishedSorting)
+		if (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 		{
 			bubble->step();
 
@@ -66,6 +74,11 @@ void RaceMgr::printMoves()
 
 void RaceMgr::printWinner()
 {
+	cout <<'\n' << endl;
+	cout << "Final merge is: ";
+	merge->printList();
+	cout << "Final bubble is ";
+	bubble->printList();
 	if (bubble->getRacePosition() == Algorithm::RacePlace::Winner)
 	{
 		cout << "Winner is " << bubble->ID << " sorting method with count # " << winnerCount << endl;
