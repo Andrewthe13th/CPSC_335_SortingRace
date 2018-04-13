@@ -22,6 +22,7 @@ MergeSort::MergeSort(const vector<int>& a)
 	maxComparisions = subListCount / 2;
 	indexLeft = 0;
 	indexRight = 1;
+	ID = "M";
 
 	//cout << "-> " << sublistSize << " " << subListCount << " " << maxComparisions << endl;
 
@@ -110,24 +111,6 @@ void MergeSort::step()
 			prefixRight = 0;
 			indexLeft = (2 * currentComparision)*sublistSize;
 			indexRight = ((2 * currentComparision)*sublistSize) + sublistSize;
-
-			//cout << "| ";
-
-			// check if finished
-			if (currentComparision == 1 && maxComparisions == 1)
-			{
-				// check if there is a sublist that isn't compared
-				if (subListCount % 2 == 0)
-				{
-					Astatus = Algorithm::AlgorithmStatus::FinishedSorting;
-					// update list with Temp
-					int i = 0;
-					for (auto &x : list)
-					{
-						x = temp[i]; i++;
-					}
-				}
-			}
 			
 		}
 	}
@@ -157,6 +140,23 @@ void MergeSort::step()
 					//cout << temp[indexLeft + prefixLeft + prefixRight + i] << " ";
 				}
 				//cout << "| ";
+			}
+		}
+		// check if finished
+		else if (currentComparision == 1 && maxComparisions == 1)
+		{
+			// check if there were an even amount of sublist
+			if (subListCount % 2 == 0)
+			{
+				Astatus = Algorithm::AlgorithmStatus::FinishedSorting;
+				// update list with Temp
+				int i = 0;
+				for (auto &x : list)
+				{
+					x = temp[i]; i++;
+				}
+
+				return;
 			}
 		}
 
