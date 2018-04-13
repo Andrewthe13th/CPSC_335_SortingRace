@@ -12,7 +12,9 @@ void RaceMgr::run()
 		 basically hard coded to let bubble finish
 	*/
 	while ((bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting) || (merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting))
-	{
+	{   //Increase count
+		count++;
+
 		if (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 		{
 			// run bubble sort if it hasn't finished running
@@ -58,8 +60,8 @@ void RaceMgr::run()
 			}
 
 		}
-			count++;
-			printMoves();
+		//Prints moves if there was a change 
+		printMoves();
 	}
 }
 
