@@ -23,33 +23,45 @@ MergeSort::MergeSort(const vector<int>& a)
 	indexLeft = 0;
 	indexRight = 1;
 
+	//cout << "-> " << sublistSize << " " << subListCount << " " << maxComparisions << endl;
 
 }
 
 void MergeSort::step()
 {
-	// check if comparisons still exist for the sublist size
-	cout << "Current: " << currentComparision << " Max: " << maxComparisions << endl;
 	
+	// check if a pair of sublists can be compared among each other 
 	if (currentComparision != maxComparisions)
 	{
-		cout << "Sublist Size & Count: " << sublistSize << ", " << subListCount << endl;
-		cout << "Left index & prefix: " << indexLeft << ", " << prefixLeft << " Right index & prefix: " << indexRight << ", " << prefixRight << endl;
 		Astatus = Algorithm::AlgorithmStatus::Unsorted;
 		// if right is less than left then swap
 		if (list[indexLeft + prefixLeft] > list[indexRight + prefixRight])
 		{
-			cout << list[indexLeft + prefixLeft] << " > " << list[indexRight + prefixRight] << endl << endl;
-			// store value in temp array
-			temp[indexLeft + prefixLeft + prefixRight] = list[indexRight + prefixRight];
-			prefixRight++;
 			// swap
 			Astatus = Algorithm::AlgorithmStatus::Swapping;
+
+			////cout << list[indexLeft + prefixLeft] << " > " << list[indexRight + prefixRight] << endl << endl;
+			// store value in temp array
+			temp[indexLeft + prefixLeft + prefixRight] = list[indexRight + prefixRight];
+
+			//cout << temp[indexLeft + prefixLeft + prefixRight] << " ";
+
+			prefixRight++;
+
+			// check if right side has less elements than normal sublist
+			if ((indexRight + prefixRight) >= static_cast<int>(list.size()))
+			{
+				prefixRight = sublistSize;
+			}
+
 		}
 		else // left is less than right
 		{
-			cout << list[indexLeft + prefixLeft] << " > " << list[indexRight + prefixRight];
+			////cout << list[indexLeft + prefixLeft] << " > " << list[indexRight + prefixRight];
 			temp[indexLeft + prefixLeft + prefixRight] = list[indexLeft + prefixLeft];
+
+			//cout << temp[indexLeft + prefixLeft + prefixRight] << " ";
+
 			prefixLeft++;
 		}
 
@@ -63,8 +75,15 @@ void MergeSort::step()
 				// push whatever is remaining on the right sublist to the temp
 				while (prefixRight != sublistSize)
 				{
-					temp[indexLeft + prefixLeft + prefixRight] = list[indexRight + prefixRight];
+					// check if right side has less elements than normal sublist
+					if (!((indexRight + prefixRight) >= static_cast<int>(list.size())))
+					{
+						temp[indexLeft + prefixLeft + prefixRight] = list[indexRight + prefixRight];
+						//cout << temp[indexLeft + prefixLeft + prefixRight] << " ";
+					}
+
 					prefixRight++;
+					
 				}
 			} // check right
 			else if (prefixRight == sublistSize)
@@ -72,11 +91,19 @@ void MergeSort::step()
 				// push whatever is remaining on the left sublist to the temp
 				while (prefixLeft != sublistSize)
 				{
+					// check if right side has less elements than normal sublist
+					if ((indexRight + prefixRight) >= static_cast<int>(list.size()))
+					{
+						prefixRight = static_cast<int>(list.size()) - indexRight;
+					}
+
 					temp[indexLeft + prefixLeft + prefixRight] = list[indexLeft + prefixLeft];
+					//cout << temp[indexLeft + prefixLeft + prefixRight] << " ";
 					prefixLeft++;
 				}
 				
 			}
+
 			// Move to next comparison on the same level
 			currentComparision++;
 			prefixLeft = 0;
@@ -84,23 +111,54 @@ void MergeSort::step()
 			indexLeft = (2 * currentComparision)*sublistSize;
 			indexRight = ((2 * currentComparision)*sublistSize) + sublistSize;
 
+			//cout << "| ";
+
 			// check if finished
 			if (currentComparision == 1 && maxComparisions == 1)
 			{
-				Astatus = Algorithm::AlgorithmStatus::FinishedSorting;
-				for (auto &x : temp)
-					cout << x << " ";
-				cout << endl;
+				// check if there is a sublist that isn't compared
+				if (subListCount % 2 == 0)
+				{
+					Astatus = Algorithm::AlgorithmStatus::FinishedSorting;
+					// update list with Temp
+					int i = 0;
+					for (auto &x : list)
+					{
+						x = temp[i]; i++;
+					}
+				}
 			}
 			
 		}
 	}
 	else // no more comparisons, move on to the next level
 	{
-		if (maxComparisions % 2 == 1) // odd
-			maxComparisions = (maxComparisions + 1) / 2;
-		else // even
-			maxComparisions = maxComparisions / 2;
+		
+
+		// check if there is a sublist that isn't compared
+		if (subListCount % 2 == 1)
+		{
+			// check if sublist has less elements than normal sublist
+			if ((static_cast<int>(list.size()) - indexLeft) < sublistSize)
+			{
+				while ((indexLeft + prefixLeft) < (static_cast<int>(list.size())))
+				{
+					temp[indexLeft + prefixLeft] = list[indexLeft + prefixLeft];
+					prefixLeft++;
+				}
+				prefixLeft = 0;
+
+			}
+			else
+			{
+				for (int i = 0; i < sublistSize; i++)
+				{
+					temp[indexLeft + prefixLeft + prefixRight + i] = list[indexLeft + prefixLeft + prefixRight + i];
+					//cout << temp[indexLeft + prefixLeft + prefixRight + i] << " ";
+				}
+				//cout << "| ";
+			}
+		}
 
 		// update list with Temp
 		int i = 0;
@@ -109,13 +167,16 @@ void MergeSort::step()
 			x = temp[i]; i++;
 		}
 
-
 		currentComparision = 0;
 		sublistSize = sublistSize * 2;
-		subListCount = subListCount / 2;
-		maxComparisions = ceil(static_cast<double>(subListCount)/2);
+		subListCount = (int)(ceil(static_cast<double>(subListCount) / 2));
+		maxComparisions = (static_cast<int>(subListCount)/2);
 		indexLeft = 0;
 		indexRight = ((2 * currentComparision)*sublistSize) + sublistSize;
+
+		//cout << "-> " << sublistSize << " " << subListCount << " " << maxComparisions;
+		//cout << endl;
+
 		step();
 	}
 }
@@ -124,7 +185,7 @@ void MergeSort::printTemp()
 {
 	for (int i = 0; i < ( (static_cast<int>( temp.size()))-1 ) ; i++)
 	{
-		cout << temp[i] << ", ";
+		//cout << temp[i] << ", ";
 	}
-	cout << temp.back() << "]" << endl;
+	//cout << temp.back() << "]" << endl;
 }

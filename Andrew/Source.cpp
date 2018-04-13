@@ -25,8 +25,15 @@ int main(int argc, char *argv[])
 		cout << list[i] << ", ";
 	}
 	cout << list.back() << "]\n" << endl;
+	
+	// adds check for a single element
+	if (static_cast<int>(list.size()) != 1)
+	{
+		start.run();
+		start.printWinner();
+	}
+	else
+		cout << "List is already sorted since it contains only one element!!!\n";
 
-	start.run();
-	start.printWinner();
 	return 0;
 }

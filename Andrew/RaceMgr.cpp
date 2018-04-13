@@ -11,28 +11,32 @@ void RaceMgr::run()
 
 		 basically hard coded to let bubble finish
 	*/
-	while (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
+	while ((bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting) || (merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting))
 	{
-		// run bubble sort if it hasn't finished running
 		if (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 		{
-			bubble->step();
-
-			// check if bubble has finished after this step
-			if (bubble->getStatus() == Algorithm::AlgorithmStatus::FinishedSorting)
+			// run bubble sort if it hasn't finished running
+			if (bubble->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 			{
-				if (merge->getRacePosition() != Algorithm::RacePlace::Winner)
+				bubble->step();
+
+				// check if bubble has finished after this step
+				if (bubble->getStatus() == Algorithm::AlgorithmStatus::FinishedSorting)
 				{
-					bubble->setRacePosition(Algorithm::RacePlace::Winner);
-					winnerCount = count;
-				}
-				else
-				{
-					bubble->setRacePosition(Algorithm::RacePlace::Loser);
-					loserCount = count;
+					if (merge->getRacePosition() != Algorithm::RacePlace::Winner)
+					{
+						bubble->setRacePosition(Algorithm::RacePlace::Winner);
+						winnerCount = count;
+					}
+					else
+					{
+						bubble->setRacePosition(Algorithm::RacePlace::Loser);
+						loserCount = count;
+					}
 				}
 			}
 		}
+
 		// run merge sort if it hasn't finished running
 		if (merge->getStatus() != Algorithm::AlgorithmStatus::FinishedSorting)
 		{
@@ -52,10 +56,9 @@ void RaceMgr::run()
 					loserCount = count;
 				}
 			}
+			count++;
+			printMoves();
 		}
-
-		count++;
-		printMoves();
 	}
 }
 
