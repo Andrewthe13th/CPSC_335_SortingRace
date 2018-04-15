@@ -24,7 +24,8 @@ Makefile
 TestRuns.txt
 
 ##Setup and Installation
-Use the makefile provided with the other files
+linux with g++:
+  Use the Makefile provided with the other files
 
 ##Sample invocation
 ./sort_race <numbers separated by spaces>
