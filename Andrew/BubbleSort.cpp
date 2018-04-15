@@ -1,3 +1,15 @@
+/*
+Team Name: PAN
+Paul Smith pgsmith@csu.fullerton.edu
+Andrew de Fluente adelafuente3@csu.fullerton.edu
+Nguyen Tran ntran272@csu.fullerton.edu
+
+BubbleSort:
+    Creates an instance of bubblesort and has function to run the algorithm one step at 
+    a time.
+*/
+
+
 #include "BubbleSort.h"
 
 /* BubbleSort Implementation */

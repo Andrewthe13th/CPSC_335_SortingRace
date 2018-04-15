@@ -1,3 +1,14 @@
+/*
+Team Name: PAN
+Paul Smith pgsmith@csu.fullerton.edu
+Andrew de Fluente adelafuente3@csu.fullerton.edu
+Nguyen Tran ntran272@csu.fullerton.edu
+
+source:
+    Contains the main function. Main handlles the numbers given from the command line. Create a RaceMgr object, than call run() and print().
+    Main also handles cases when no numbers or a single number is given.
+*/
+
 #include "RaceMgr.h"
 #include <sstream>
 #include <vector>

@@ -1,3 +1,15 @@
+/*
+Team Name: PAN
+Paul Smith pgsmith@csu.fullerton.edu
+Andrew de Fluente adelafuente3@csu.fullerton.edu
+Nguyen Tran ntran272@csu.fullerton.edu
+
+RaceMgr:
+    Calls the algorith step funcction. Contains the logic on when to call each algorithms step() function.Call the print moves() funcction
+    when moves are made and calls the printWinner() function when both algorithms are done sorting.
+*/
+
+
 #include "RaceMgr.h"
 
 void RaceMgr::run()

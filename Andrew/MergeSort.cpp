@@ -1,3 +1,14 @@
+/*
+Team Name: PAN
+Paul Smith pgsmith@csu.fullerton.edu
+Andrew de Fluente adelafuente3@csu.fullerton.edu
+Nguyen Tran ntran272@csu.fullerton.edu
+
+MergeSort:
+    Creates an instance of MergeSort and has function to run the algorithm one step at 
+    a time.
+*/
+
 #include "MergeSort.h"
 
 /* MergeSort Implementation */

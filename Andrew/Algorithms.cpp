@@ -1,3 +1,14 @@
+/*
+Team Name: PAN
+Paul Smith pgsmith@csu.fullerton.edu
+Andrew de Fluente adelafuente3@csu.fullerton.edu
+Nguyen Tran ntran272@csu.fullerton.edu
+
+Algorithms:
+    Holds the raccepositions, winner and looser and status of the running algoriths.
+    Also handles prints for the algorithms that are running.
+*/
+
 #include "Algorithms.h"
 
 
