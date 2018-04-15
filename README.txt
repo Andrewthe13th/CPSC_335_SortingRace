@@ -4,7 +4,7 @@ Project 1 - Sort Race
 Team Name: PAN
 Paul Smith pgsmith@csu.fullerton.edu
 Andrew de Fluente <insert email>
-Nguyen Tran <insert email>
+Nguyen Tran ntran272@csu.fullerton.edu
 
 Intro
 In this project, we follow the algorithm Bubble Sort and Merge Sort from the project guides.
