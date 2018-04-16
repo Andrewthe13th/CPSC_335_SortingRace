@@ -24,8 +24,10 @@ Makefile
 TestRuns.txt
 
 ##Setup and Installation
-linux and macos with g++:
+linux and macros with g++:
   Use the Makefile provided with the other files
+  Run command: make
+  or
   Run command: make -f Makefile
 
 ##Sample invocation
